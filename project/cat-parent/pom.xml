@@ -13,7 +13,11 @@
   </modules>
   
   <properties>
+    <!-- project related -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.groupId>com.blackcat</project.groupId>
+    <project.version>0.0.1-SNAPSHOT</project.version>
+    
   	<springframework-version>4.0.2.RELEASE</springframework-version>
 	<slf4j-version>1.7.6</slf4j-version>
 	<log4j-version>1.2.17</log4j-version>
@@ -475,9 +479,9 @@
 			<activeByDefault>true</activeByDefault>
 		</activation>
 		<properties>
-			<ds.drivername>oracle.jdbc.driver.OracleDriver</ds.drivername>
-			<ds.url>jdbc:oracle:thin:@localhost:1521:orcl</ds.url>
-			<ds.usename>Z0pH71rCXKU=</ds.usename><!--明文：acd  -->
+			<ds.drivername>com.mysql.jdbc.Driver</ds.drivername>
+			<ds.url>jdbc:mysql://localhost:3306/test</ds.url>
+			<ds.username>Z0pH71rCXKU=</ds.username><!--明文：acd  -->
 			<ds.password>snJGbiOJx20=</ds.password><!-- 明文sunline -->
 			<level.debug>DEBUG</level.debug>
 		</properties>

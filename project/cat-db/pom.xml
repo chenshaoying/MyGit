@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
   	<groupId>com.blackcat</groupId>
 	<artifactId>cat-parent</artifactId>
@@ -8,11 +9,11 @@
 	 <relativePath>../cat-parent/pom.xml</relativePath>
   </parent>
   
-  <artifactId>cat-dist</artifactId>
-  <packaging>war</packaging>
-  <name>cat-dist Maven Webapp</name>
+  <artifactId>cat-db</artifactId>
+  <packaging>jar</packaging>
+  <name>cat-db</name>
   <url>http://maven.apache.org</url>
-  
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -26,8 +27,4 @@
       <version>${project.version}</version>      
     </dependency>
   </dependencies>
-  
-  <build>
-    <finalName>cat-dist</finalName>
-  </build>
 </project>
