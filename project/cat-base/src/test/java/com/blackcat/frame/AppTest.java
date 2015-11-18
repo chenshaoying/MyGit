@@ -1,4 +1,4 @@
-package com.blackcat.cat_db;
+package com.blackcat.frame;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -7,7 +7,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class CodeGenerator 
+public class AppTest 
     extends TestCase
 {
     /**
@@ -15,7 +15,7 @@ public class CodeGenerator
      *
      * @param testName name of the test case
      */
-    public CodeGenerator( String testName )
+    public AppTest( String testName )
     {
         super( testName );
     }
@@ -25,7 +25,7 @@ public class CodeGenerator
      */
     public static Test suite()
     {
-        return new TestSuite( CodeGenerator.class );
+        return new TestSuite( AppTest.class );
     }
 
     /**

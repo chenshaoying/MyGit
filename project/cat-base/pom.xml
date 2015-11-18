@@ -8,10 +8,10 @@
 	 <relativePath>../cat-parent/pom.xml</relativePath>
   </parent>
   
-  <artifactId>cat-base</artifactId>
+  <artifactId>cat-frame</artifactId>
   <packaging>jar</packaging>
 
-  <name>cat-base</name>
+  <name>cat-frame</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
@@ -202,6 +202,27 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
-			</dependency>
+		</dependency>
+		
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+		</dependency>
+		
+		<!-- redis --> 
+		<dependency>  
+	        <groupId>org.springframework.data</groupId>  
+	        <artifactId>spring-data-redis</artifactId>  
+    	</dependency> 
+    	
+	    <dependency>  
+	        <groupId>redis.clients</groupId>  
+	        <artifactId>jedis</artifactId>  
+	    </dependency> 
   </dependencies>
 </project>

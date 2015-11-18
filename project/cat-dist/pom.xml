@@ -22,7 +22,7 @@
     
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>cat-base</artifactId>
+      <artifactId>cat-frame</artifactId>
       <version>${project.version}</version>      
     </dependency>
   </dependencies>

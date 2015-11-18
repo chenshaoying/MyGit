@@ -8,26 +8,33 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.security.auth.login.Configuration;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
+import freemarker.template.Configuration;
 import freemarker.template.Template;
-import freemarker.template.utility.Constants;
 
 public class FreemarkerUtil {
 
 	private Configuration cfg;
 	private static String outputPath = new File("").getAbsolutePath()+"\\gen\\";
-
+	
+	private static final String url = "jdbc:mysql://localhost:3306/test" ;    
+	private static final String username = "root" ;   
+	private static final String password = "root" ;
+	
 	public void init() throws Exception {
 		// 初始化FreeMarker配置
 		// 创建一个Configuration实例
 		cfg = new Configuration();
 		// 设置FreeMarker的模版文件位置
 		cfg.setDirectoryForTemplateLoading(new File(
-				"D://Workspaces//MyEclipse75//s2sh//WebRoot//template"));
+				FreemarkerUtil.class.getResource("").getFile()));
 	}
 
-	public void process(FreeMarkerUtil hf) throws Exception {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void process(FreemarkerUtil hf) throws Exception {
 
 		Map root = new HashMap();
 
@@ -90,7 +97,7 @@ public class FreemarkerUtil {
 		try {
 			// SYSTEM_ENCODING = "UTF-8";
 			Writer out = new OutputStreamWriter(new FileOutputStream(
-					realFileName), Constants.SYSTEM_ENCODING);
+					realFileName), "UTF-8");
 
 			template.process(root, out);
 		} catch (Exception e) {
@@ -99,10 +106,17 @@ public class FreemarkerUtil {
 
 	}
 
-	public static void main(String[] args) throws Exception {
-		FreeMarkerUtil hf = new FreeMarkerUtil();
+	public void gen() throws Exception {
+		FreemarkerUtil hf = new FreemarkerUtil();
 		hf.init();
 		hf.process(hf);
 	}
 
+	//获取需要生成代码的表
+	private Element getTableCfgs() throws Throwable {
+		SAXReader reader = new SAXReader();
+		Document doc = reader.read(FreemarkerUtil.class.getResourceAsStream("gencfg.xml"));
+		//System.out.println(doc.getRootElement().asXML());
+		return doc.getRootElement();
+	}
 }

@@ -23,8 +23,44 @@
     
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>cat-base</artifactId>
+      <artifactId>cat-frame</artifactId>
       <version>${project.version}</version>      
     </dependency>
+    <dependency>  
+         <groupId>org.mybatis.generator</groupId>  
+         <artifactId>mybatis-generator-core</artifactId>  
+         <version>1.3.2</version>  
+     </dependency> 
   </dependencies>
+  
+  <build>
+  	<plugins>
+	  <plugin> 
+	   <groupId>org.mybatis.generator</groupId> 
+	   <artifactId>mybatis-generator-maven-plugin</artifactId> 
+	   <version>1.3.2</version> 
+          <configuration>  
+                <verbose>true</verbose>  
+                <overwrite>true</overwrite>  
+          </configuration>  
+	    <dependencies>  
+             <dependency>  
+                 <groupId>mysql</groupId>  
+                 <artifactId>mysql-connector-java</artifactId>  
+                 <version>5.1.29</version>  
+             </dependency>  
+             <dependency>  
+                 <groupId>org.mybatis.generator</groupId>  
+                 <artifactId>mybatis-generator-core</artifactId>  
+                 <version>1.3.2</version>  
+             </dependency>  
+             <dependency>  
+                 <groupId>org.mybatis</groupId>  
+                 <artifactId>mybatis</artifactId>  
+                 <version>3.2.5</version>  
+             </dependency>  
+         </dependencies>  
+	    </plugin> 
+  	</plugins>
+  </build>
 </project>

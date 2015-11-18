@@ -1,0 +1,1759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blackcat.base.dao.KnpUserMapper">
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.base.model.KnpUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="bankorg_id" jdbcType="DECIMAL" property="bankorgId" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="userpw" jdbcType="VARCHAR" property="userpw" />
+    <result column="userbr" jdbcType="VARCHAR" property="userbr" />
+    <result column="usedst" jdbcType="CHAR" property="usedst" />
+    <result column="userst" jdbcType="CHAR" property="userst" />
+    <result column="userlv" jdbcType="CHAR" property="userlv" />
+    <result column="lspwdt" jdbcType="VARCHAR" property="lspwdt" />
+    <result column="pwrtcn" jdbcType="INTEGER" property="pwrtcn" />
+    <result column="lslgdt" jdbcType="VARCHAR" property="lslgdt" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="mobileno" jdbcType="VARCHAR" property="mobileno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, bankorg_id, userna, userpw, userbr, usedst, userst, userlv, lspwdt, pwrtcn, 
+    lslgdt, telephone, mobileno, email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from knp_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user (userid, bankorg_id, userna, 
+      userpw, userbr, usedst, 
+      userst, userlv, lspwdt, pwrtcn, 
+      lslgdt, telephone, mobileno, 
+      email)
+    values (#{userid,jdbcType=VARCHAR}, #{bankorgId,jdbcType=DECIMAL}, #{userna,jdbcType=VARCHAR}, 
+      #{userpw,jdbcType=VARCHAR}, #{userbr,jdbcType=VARCHAR}, #{usedst,jdbcType=CHAR}, 
+      #{userst,jdbcType=CHAR}, #{userlv,jdbcType=CHAR}, #{lspwdt,jdbcType=VARCHAR}, #{pwrtcn,jdbcType=INTEGER}, 
+      #{lslgdt,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.base.model.KnpUser">
+    insert into knp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="bankorgId != null">
+        bankorg_id,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="userpw != null">
+        userpw,
+      </if>
+      <if test="userbr != null">
+        userbr,
+      </if>
+      <if test="usedst != null">
+        usedst,
+      </if>
+      <if test="userst != null">
+        userst,
+      </if>
+      <if test="userlv != null">
+        userlv,
+      </if>
+      <if test="lspwdt != null">
+        lspwdt,
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn,
+      </if>
+      <if test="lslgdt != null">
+        lslgdt,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="mobileno != null">
+        mobileno,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgId != null">
+        #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    <set>
+      <if test="bankorgId != null">
+        bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      </if>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null">
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="userbr != null">
+        userbr = #{userbr,jdbcType=VARCHAR},
+      </if>
+      <if test="usedst != null">
+        usedst = #{usedst,jdbcType=CHAR},
+      </if>
+      <if test="userst != null">
+        userst = #{userst,jdbcType=CHAR},
+      </if>
+      <if test="userlv != null">
+        userlv = #{userlv,jdbcType=CHAR},
+      </if>
+      <if test="lspwdt != null">
+        lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      </if>
+      <if test="pwrtcn != null">
+        pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      </if>
+      <if test="lslgdt != null">
+        lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        mobileno = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.base.model.KnpUser">
+    update knp_user
+    set bankorg_id = #{bankorgId,jdbcType=DECIMAL},
+      userna = #{userna,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      userbr = #{userbr,jdbcType=VARCHAR},
+      usedst = #{usedst,jdbcType=CHAR},
+      userst = #{userst,jdbcType=CHAR},
+      userlv = #{userlv,jdbcType=CHAR},
+      lspwdt = #{lspwdt,jdbcType=VARCHAR},
+      pwrtcn = #{pwrtcn,jdbcType=INTEGER},
+      lslgdt = #{lslgdt,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobileno = #{mobileno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+</mapper>
