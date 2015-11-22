@@ -48,7 +48,7 @@
 	</bean>
 	
 	<!-- 扫描控制器类 -->
-	<context:component-scan base-package="com.viathink/**/web/controller/**" />
+	<context:component-scan base-package="com.blackcat/frame/**/controller/**" />
 	
 	<!-- 配置静态资源 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />

@@ -9,7 +9,5 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 		<setting name="defaultStatementTimeout" value="25000" />
 	</settings>
-	<mappers>
-		<mapper resource="com/blackcat/frame/core/dao/SysUserMapper.xml"/>
-	</mappers>
+	
 </configuration>
