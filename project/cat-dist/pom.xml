@@ -51,7 +51,7 @@
 		    <stopKey>foo</stopKey>
             <stopPort>9999</stopPort>
 		    <webApp>
-		      <contextPath>/cat</contextPath>
+		      <contextPath>/</contextPath>
 		      <defaultsDescriptor>src/test/resources/webdefault.xml</defaultsDescriptor>
 		    </webApp>
 		    <contextXml>src/test/resources/jetty-context.xml</contextXml>

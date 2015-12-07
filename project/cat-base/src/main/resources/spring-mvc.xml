@@ -11,10 +11,10 @@
 
 
 	<!-- XML转码器 -->
-	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
-
+<!-- 	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+ -->
 	<!-- 配置freeMarker的模板路径 -->
-	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<!-- <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="configLocation" value="classpath:freemarker.properties" />
 		<property name="templateLoaderPath" value="/WEB-INF/ftl/" />
 		<property name="freemarkerVariables">
@@ -22,10 +22,10 @@
 				<entry key="xml_escape" value-ref="fmXmlEscape" />
 			</map>
 		</property>
-	</bean>
+	</bean> -->
 
 	<!-- 配置freeMarker视图解析器 -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
 		<property name="contentType" value="text/html; charset=utf-8" />
 		<property name="cache" value="true" />
@@ -36,7 +36,7 @@
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
-	</bean>
+	</bean> -->
 
 
 	<!-- jsp视图解析器 -->
@@ -51,7 +51,7 @@
 	<context:component-scan base-package="com.blackcat/frame/**/controller/**" />
 	
 	<!-- 配置静态资源 -->
-	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<!-- <mvc:resources location="/resources/" mapping="/resources/**" /> -->
 
 	<!-- 采用注解方式配置MVC -->
 	<mvc:annotation-driven  content-negotiation-manager="contentNegotiationManager">
