@@ -82,7 +82,7 @@
 	<!-- mybatis 接口扫描 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
          <!-- <property name="sqlSessionFactoryBeanName"  ref="sqlSessionFactory"/>  --> 
-         <property name="basePackage" value="com.blackcat.frame"></property>  
+         <property name="basePackage" value="com.blackcat.frame.**.dao"></property>  
      </bean> 
 
 	<!-- Jedis 连接池配置-->  

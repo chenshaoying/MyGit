@@ -298,6 +298,12 @@
 	        <artifactId>jedis</artifactId>  
 	        <version>2.4.2</version>  
 	    </dependency> 
+	    
+	    <dependency>
+              <groupId>io.netty</groupId>
+              <artifactId>netty-all</artifactId>
+              <version>5.0.0.Alpha2</version>
+		</dependency>
   	</dependencies>
   </dependencyManagement>
   
@@ -511,8 +517,8 @@
 		<properties>
 			<ds.drivername>com.mysql.jdbc.Driver</ds.drivername>
 			<ds.url>jdbc:mysql://localhost:3306/test</ds.url>
-			<ds.username>Z0pH71rCXKU=</ds.username><!--明文：acd  -->
-			<ds.password>snJGbiOJx20=</ds.password><!-- 明文sunline -->
+			<ds.username>blackcat</ds.username><!--明文：acd  -->
+			<ds.password>123456</ds.password><!-- 明文sunline -->
 			<level.debug>DEBUG</level.debug>
 		</properties>
 		<!-- 测试型数据库 -->

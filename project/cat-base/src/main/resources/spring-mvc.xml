@@ -51,7 +51,7 @@
 	<context:component-scan base-package="com.blackcat/frame/**/controller/**" />
 	
 	<!-- 配置静态资源 -->
-	<!-- <mvc:resources location="/resources/" mapping="/resources/**" /> -->
+	 <mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<!-- 采用注解方式配置MVC -->
 	<mvc:annotation-driven  content-negotiation-manager="contentNegotiationManager">
@@ -60,10 +60,11 @@
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	
+     
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 	    <property name="favorPathExtension" value="true" />
 	    <property name="favorParameter" value="true" />
-	    <property name="defaultContentType" value="text/html"/>
+	    <property name="defaultContentType" value="text/html;charset=UTF-8"/>	<!-- 防止中文乱码 -->    
 	    <property name="mediaTypes" >
 	        <value>
 	            json=application/json

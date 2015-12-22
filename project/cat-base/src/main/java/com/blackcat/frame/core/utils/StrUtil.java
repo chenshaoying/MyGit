@@ -34,4 +34,25 @@ public class StrUtil {
 			return (new StringBuilder()).append(Character.toUpperCase(str.charAt(0))).append(str.substring(1))
 					.toString();
 	}
+	
+	/**
+	 * 字符串左补
+	 * @param str
+	 * @param c
+	 * @param len
+	 * @return
+	 */
+	public static String l_pad(String str, char c, int len) {
+		int curr_len = str.length();
+		if(curr_len >= len) {
+			return str;
+		}
+		
+		char[] array = new char[len];
+		for(int i=0; i<len-curr_len; i++) {
+			array[i] = c;
+		}
+		System.arraycopy(str.toCharArray(), 0, array, len-curr_len, curr_len);
+		return new String(array);
+	}
 }
