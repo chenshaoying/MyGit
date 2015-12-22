@@ -8,14 +8,15 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
-import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 
-public class NettySocketServer {
+public class NettyObjectSocketServer {
 	
 	 private int port;
 
-	    public NettySocketServer(int port) {
+	    public NettyObjectSocketServer(int port) {
 	        this.port = port;
 	    }
 
@@ -29,9 +30,10 @@ public class NettySocketServer {
 	             .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
 	                 @Override
 	                 public void initChannel(SocketChannel ch) throws Exception {
-	                	 ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
-	                	 ch.pipeline().addLast(new StringDecoder());
-	                     ch.pipeline().addLast(new NettySocketHandler());
+	                	 ch.pipeline().addLast(new ObjectDecoder(1024*1024,
+	                			 ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())));
+	                	 ch.pipeline().addLast(new ObjectEncoder());
+	                     ch.pipeline().addLast(new NettyObjectSocketHandler());
 	                 }
 	             })
 	             .option(ChannelOption.SO_BACKLOG, 128)          // (5)
@@ -57,6 +59,6 @@ public class NettySocketServer {
 	        } else {
 	            port = 9998;
 	        }
-	        new NettySocketServer(port).run();
+	        new NettyObjectSocketServer(port).run();
 	    }
 }

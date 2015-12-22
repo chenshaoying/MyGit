@@ -50,7 +50,7 @@ class SimpleSocketHandler implements Runnable {
 			String inputs = new String(bos.toByteArray(),ENCODING);
 			log.info("Received from client:" + inputs);			
 			String outputs = "接收完毕";
-			os.write(outputs.getBytes(ENCODING));
+			os.write(SocketUtil.prepareMsg(outputs, HEAD_LEN, ENCODING));
 			os.flush();
 		} catch (Throwable t) {
 			log.error("SimpleSockeHandler error:" + t.getMessage());

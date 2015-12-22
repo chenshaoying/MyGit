@@ -4,13 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.blackcat.frame.core.utils.StrUtil;
 
 public class SimpleSocketClient {
 	private static final String ENCODING = "UTF-8";
@@ -35,14 +32,25 @@ public class SimpleSocketClient {
 			socket = new Socket(address,port);
 			
 			os = socket.getOutputStream();	
-			os.write(prepareMsg(msg));
+			os.write(SocketUtil.prepareMsg(msg, HEAD_LEN, ENCODING));
 			os.flush();
 			
 			is = socket.getInputStream();
-			byte[] r = new byte[1024];
+			byte[] head = new byte[HEAD_LEN];
+			is.read(head);
+			int body_len = Integer.valueOf(new String(head,ENCODING));
+			
 			bos = new ByteArrayOutputStream();
-			while((is.read(r)) != -1) {
-				bos.write(r);
+			int count = 0;
+			int i = 0;
+			byte[] body = new byte[1024];
+			while(i != -1) {
+				i = is.read(body);
+				count+=i;
+				bos.write(body,0, i);
+				if(count >= body_len) {
+					break;
+				}
 			}
 			bos.flush();
 			log.info("receive from server:" + new String(bos.toByteArray(), ENCODING));
@@ -86,20 +94,9 @@ public class SimpleSocketClient {
 	
 	public static void main(String[] args) throws IOException {
 		String msg = "我日了狗了";
-		SimpleSocketClient client = new SimpleSocketClient("127.0.0.1", 9999);
-		client.send(msg);
-		
+		SimpleSocketClient client = new SimpleSocketClient("127.0.0.1", 5555);
+		client.send(msg);		
 	}
 	
-	private byte[] prepareMsg(String msg) throws UnsupportedEncodingException {
-		byte[] b = msg.getBytes(ENCODING);			
-		String head = StrUtil.l_pad(b.length + "", '0', HEAD_LEN);
-		byte[] h = head.getBytes(ENCODING);
-		
-		byte[] ret = new byte[HEAD_LEN + b.length];
-		System.arraycopy(h, 0, ret, 0, HEAD_LEN);
-		System.arraycopy(b, 0, ret, HEAD_LEN, b.length);
-		return ret;
-	}
 	
 }
