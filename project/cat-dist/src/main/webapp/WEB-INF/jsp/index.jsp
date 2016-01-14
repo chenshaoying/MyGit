@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +38,8 @@
 							</div> -->
 							<div class="form-group">
 								<label for="userid">用户名</label> <input
-									type="userid" class="form-control" id="userid" name="userid"
-									placeholder="用户名">
+									type="text" class="form-control" id="userid" name="userid"
+									placeholder="用户名"/>
 							</div>
 							
 							<div class="form-group">
@@ -46,13 +49,19 @@
 							</div>
 							
 							<div class="form-group">
+								<label for="gender">gender</label> 
+								<form:select path="user.gender" items="${genderList}" class="form-control"/>
+							<%-- 	<jsp:select name="gerder" list="@com.blackcat.frame.core.utils.DictUtil@getDict('common','gender', false)"></jsp:select> --%>
+							</div>
+							
+							<!-- <div class="form-group">
 	                            <label id="captchaOperation" class="col-md-5 control-label"></label>
 			                    <input type="text" class="form-control " name="captcha" />
-                       		</div>
+                       		</div> -->
                        		
 							<div class="form-group">
 								<div class="checkbox">
-									<label> <input type="checkbox" name="isAgreed[]"> 我已阅读并同意</input>
+									<label> <input type="checkbox" name="isAgreed[]"/> 我已阅读并同意									
 									</label>
 									<button type="button" class="btn btn-link">《用户服务协议》</button>
 								</div>
@@ -84,10 +93,10 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	// Generate a simple captcha
-    function randomNumber(min, max) {
+    /* function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
-    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' ')); */
     
     $('#registerForm').bootstrapValidator({
         message: 'This value is not valid',
@@ -150,7 +159,7 @@ $(document).ready(function() {
                         message: 'Please agree the deal'
                     }
                 }
-            },
+            }/* ,
             captcha: {
                 validators: {
                     callback: {
@@ -161,7 +170,7 @@ $(document).ready(function() {
                         }
                     }
                 }
-            }             
+            } */             
         }
     });
     

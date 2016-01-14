@@ -25,6 +25,7 @@
       <artifactId>cat-frame</artifactId>
       <version>${project.version}</version>      
     </dependency>
+    
   </dependencies>
   
   <build>

@@ -138,4 +138,30 @@
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
+  
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.blackcat.frame.core.model.SysUser" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where 1=1
+      <if test="userid != null" >
+        and userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="userna != null" >
+        and userna like CONCAT('%', #{userna,jdbcType=VARCHAR}, '%'),
+      </if>
+      <if test="gender != null" >
+        and gender like #{gender,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        and mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        and email like '%' CONCAT('%', #{email,jdbcType=VARCHAR}, '%'),
+      </if>
+      <if test="status != null" >
+        and status like #{status,jdbcType=CHAR},
+      </if>
+      order by userid asc
+  </select>
 </mapper>

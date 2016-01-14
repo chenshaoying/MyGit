@@ -9,14 +9,14 @@
  		<!-- 序列化插件  -->
  		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
  		<!-- 分页插件  -->
-<!--  		 <plugin type="com.blackcat.db.plugin。MySQLPaginationPlugin" />
+<!--  		 <plugin type="com.blackcat.db.plugin.MySQLPaginationPlugin" />
  --> 		
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
  
         <!-- 数据库链接URL、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/test"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.147.129:3306/blackcat"
                         userId="blackcat" password="123456">
         </jdbcConnection>
  
@@ -43,6 +43,8 @@
  
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
         <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_dict" domainObjectName="SysDict" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
     </context>
 </generatorConfiguration>

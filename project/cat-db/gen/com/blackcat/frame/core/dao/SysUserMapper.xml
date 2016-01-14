@@ -1,31 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.blackcat.frame.core.dao.SysUserMapper" >
-  <resultMap id="BaseResultMap" type="com.blackcat.frame.core.model.SysUser" >
-    <id column="userid" property="userid" jdbcType="VARCHAR" />
-    <result column="userna" property="userna" jdbcType="VARCHAR" />
-    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="CHAR" />
-    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="CHAR" />
-    <result column="reg_date" property="regDate" jdbcType="DATE" />
-    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blackcat.frame.core.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.blackcat.frame.core.model.SysUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="reg_date" jdbcType="DATE" property="regDate" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     userid, userna, passwd, gender, mobile, email, status, reg_date, last_login_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_user
     where userid = #{userid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_user
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.blackcat.frame.core.model.SysUser" >
+  <insert id="insert" parameterType="com.blackcat.frame.core.model.SysUser">
     insert into sys_user (userid, userna, passwd, 
       gender, mobile, email, 
       status, reg_date, last_login_time
@@ -35,98 +35,235 @@
       #{status,jdbcType=CHAR}, #{regDate,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.blackcat.frame.core.model.SysUser" >
+  <insert id="insertSelective" parameterType="com.blackcat.frame.core.model.SysUser">
     insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
         userid,
       </if>
-      <if test="userna != null" >
+      <if test="userna != null">
         userna,
       </if>
-      <if test="passwd != null" >
+      <if test="passwd != null">
         passwd,
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender,
       </if>
-      <if test="mobile != null" >
+      <if test="mobile != null">
         mobile,
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         email,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
-      <if test="regDate != null" >
+      <if test="regDate != null">
         reg_date,
       </if>
-      <if test="lastLoginTime != null" >
+      <if test="lastLoginTime != null">
         last_login_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
         #{userid,jdbcType=VARCHAR},
       </if>
-      <if test="userna != null" >
+      <if test="userna != null">
         #{userna,jdbcType=VARCHAR},
       </if>
-      <if test="passwd != null" >
+      <if test="passwd != null">
         #{passwd,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         #{gender,jdbcType=CHAR},
       </if>
-      <if test="mobile != null" >
+      <if test="mobile != null">
         #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=CHAR},
       </if>
-      <if test="regDate != null" >
+      <if test="regDate != null">
         #{regDate,jdbcType=DATE},
       </if>
-      <if test="lastLoginTime != null" >
+      <if test="lastLoginTime != null">
         #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.frame.core.model.SysUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.frame.core.model.SysUser">
     update sys_user
-    <set >
-      <if test="userna != null" >
+    <set>
+      <if test="userna != null">
         userna = #{userna,jdbcType=VARCHAR},
       </if>
-      <if test="passwd != null" >
+      <if test="passwd != null">
         passwd = #{passwd,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender = #{gender,jdbcType=CHAR},
       </if>
-      <if test="mobile != null" >
+      <if test="mobile != null">
         mobile = #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status = #{status,jdbcType=CHAR},
       </if>
-      <if test="regDate != null" >
+      <if test="regDate != null">
         reg_date = #{regDate,jdbcType=DATE},
       </if>
-      <if test="lastLoginTime != null" >
+      <if test="lastLoginTime != null">
         last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.blackcat.frame.core.model.SysUser" >
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.frame.core.model.SysUser">
+    update sys_user
+    set userna = #{userna,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      reg_date = #{regDate,jdbcType=DATE},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.blackcat.frame.core.model.SysUser">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="userna" jdbcType="VARCHAR" property="userna" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="reg_date" jdbcType="DATE" property="regDate" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, userna, passwd, gender, mobile, email, status, reg_date, last_login_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.frame.core.model.SysUser">
+    insert into sys_user (userid, userna, passwd, 
+      gender, mobile, email, 
+      status, reg_date, last_login_time
+      )
+    values (#{userid,jdbcType=VARCHAR}, #{userna,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{regDate,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.frame.core.model.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="userna != null">
+        userna,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="regDate != null">
+        reg_date,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="userna != null">
+        #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="regDate != null">
+        #{regDate,jdbcType=DATE},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.frame.core.model.SysUser">
+    update sys_user
+    <set>
+      <if test="userna != null">
+        userna = #{userna,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="regDate != null">
+        reg_date = #{regDate,jdbcType=DATE},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.frame.core.model.SysUser">
     update sys_user
     set userna = #{userna,jdbcType=VARCHAR},
       passwd = #{passwd,jdbcType=VARCHAR},

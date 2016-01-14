@@ -1,5 +1,7 @@
 package com.blackcat.frame.core.service;
 
+import java.util.List;
+
 import com.blackcat.frame.core.model.SysUser;
 
 public interface SysUserService {
@@ -9,4 +11,7 @@ public interface SysUserService {
 	
 	//
 	SysUser queryUserDetail(String userid);
+	
+	//
+	List<SysUser> getUsersSelective(SysUser condition);
 }

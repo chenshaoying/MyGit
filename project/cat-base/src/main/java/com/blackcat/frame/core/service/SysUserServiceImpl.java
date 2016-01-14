@@ -1,5 +1,7 @@
 package com.blackcat.frame.core.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,10 @@ public class SysUserServiceImpl implements SysUserService {
 	@Override
 	public SysUser queryUserDetail(String userid) {
 		return sysUserMapper.selectByPrimaryKey(userid);
+	}
+
+	@Override
+	public List<SysUser> getUsersSelective(SysUser condition) {		
+		return sysUserMapper.querySelective(condition);
 	}
 }

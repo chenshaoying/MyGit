@@ -304,6 +304,28 @@
               <artifactId>netty-all</artifactId>
               <version>5.0.0.Alpha2</version>
 		</dependency>
+		
+		<!-- @ Java EE @ -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>3.0-alpha-1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2.1-b03</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl-api</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
   	</dependencies>
   </dependencyManagement>
   
@@ -516,7 +538,7 @@
 		</activation>
 		<properties>
 			<ds.drivername>com.mysql.jdbc.Driver</ds.drivername>
-			<ds.url>jdbc:mysql://localhost:3306/test</ds.url>
+			<ds.url>jdbc:mysql://192.168.147.130:3306/blackcat</ds.url>
 			<ds.username>blackcat</ds.username><!--明文：acd  -->
 			<ds.password>123456</ds.password><!-- 明文sunline -->
 			<level.debug>DEBUG</level.debug>

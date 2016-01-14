@@ -1,5 +1,7 @@
 package com.blackcat.frame.core.dao;
 
+import java.util.List;
+
 import com.blackcat.frame.core.model.SysUser;
 
 public interface SysUserMapper {
@@ -14,4 +16,6 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+    
+    List<SysUser> querySelective(SysUser record);
 }

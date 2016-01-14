@@ -84,7 +84,11 @@
          <!-- <property name="sqlSessionFactoryBeanName"  ref="sqlSessionFactory"/>  --> 
          <property name="basePackage" value="com.blackcat.frame.**.dao"></property>  
      </bean> 
-
+     
+	<!-- 程序上下文 --> 
+	<bean id="appContext" class="com.blackcat.frame.core.context.AppContext"/>  
+	
+	
 	<!-- Jedis 连接池配置-->  
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">  
 	    <!-- <property name="maxActive" value="${redis.pool.maxActive}" />  --> 
