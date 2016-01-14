@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blackcat.frame.core.dao.SysDictMapper" >
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" readOnly="true"/>
+  <resultMap id="BaseResultMap" type="com.blackcat.frame.core.model.SysDict" >
+    <id column="dictcd" property="dictcd" jdbcType="VARCHAR" />
+    <id column="fildcd" property="fildcd" jdbcType="VARCHAR" />
+    <id column="fildvl" property="fildvl" jdbcType="VARCHAR" />
+    <result column="desctx" property="desctx" jdbcType="VARCHAR" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dictcd, fildcd, fildvl, desctx, seq
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.blackcat.frame.core.model.SysDictKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where dictcd = #{dictcd,jdbcType=VARCHAR}
+      and fildcd = #{fildcd,jdbcType=VARCHAR}
+      and fildvl = #{fildvl,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.blackcat.frame.core.model.SysDictKey" >
+    delete from sys_dict
+    where dictcd = #{dictcd,jdbcType=VARCHAR}
+      and fildcd = #{fildcd,jdbcType=VARCHAR}
+      and fildvl = #{fildvl,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.frame.core.model.SysDict" >
+    insert into sys_dict (dictcd, fildcd, fildvl, 
+      desctx, seq)
+    values (#{dictcd,jdbcType=VARCHAR}, #{fildcd,jdbcType=VARCHAR}, #{fildvl,jdbcType=VARCHAR}, 
+      #{desctx,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.frame.core.model.SysDict" >
+    insert into sys_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictcd != null" >
+        dictcd,
+      </if>
+      <if test="fildcd != null" >
+        fildcd,
+      </if>
+      <if test="fildvl != null" >
+        fildvl,
+      </if>
+      <if test="desctx != null" >
+        desctx,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictcd != null" >
+        #{dictcd,jdbcType=VARCHAR},
+      </if>
+      <if test="fildcd != null" >
+        #{fildcd,jdbcType=VARCHAR},
+      </if>
+      <if test="fildvl != null" >
+        #{fildvl,jdbcType=VARCHAR},
+      </if>
+      <if test="desctx != null" >
+        #{desctx,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.frame.core.model.SysDict" >
+    update sys_dict
+    <set >
+      <if test="desctx != null" >
+        desctx = #{desctx,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dictcd = #{dictcd,jdbcType=VARCHAR}
+      and fildcd = #{fildcd,jdbcType=VARCHAR}
+      and fildvl = #{fildvl,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.frame.core.model.SysDict" >
+    update sys_dict
+    set desctx = #{desctx,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER}
+    where dictcd = #{dictcd,jdbcType=VARCHAR}
+      and fildcd = #{fildcd,jdbcType=VARCHAR}
+      and fildvl = #{fildvl,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByCodeAndField" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where dictcd = #{dictcd,jdbcType=VARCHAR}
+      and fildcd = #{fildcd,jdbcType=VARCHAR}
+      order by seq asc
+  </select>
+</mapper>
