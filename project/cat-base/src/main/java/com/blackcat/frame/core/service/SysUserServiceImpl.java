@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.blackcat.frame.core.dao.SysUserMapper;
+import com.blackcat.frame.core.exception.ServiceException;
 import com.blackcat.frame.core.model.SysUser;
 
 @Service
@@ -34,5 +37,15 @@ public class SysUserServiceImpl implements SysUserService {
 	@Override
 	public List<SysUser> getUsersSelective(SysUser condition) {		
 		return sysUserMapper.querySelective(condition);
+	}
+
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void addUser(SysUser user) {
+		// TODO Auto-generated method stub
+		if(sysUserMapper.selectByPrimaryKey(user.getUserid()) != null) {
+			throw new ServiceException(user.getUserid() + "已经存在");
+		}
+		sysUserMapper.insert(user);
 	}
 }

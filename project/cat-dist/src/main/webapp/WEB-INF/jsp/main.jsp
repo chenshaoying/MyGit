@@ -1,30 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/jsp/public/meta.jsp"></jsp:include>
-
-  <link href="<%=request.getContextPath()%>/resources/js/sbadmin/css/sb-admin-2.css" rel="stylesheet">
-  <link href="<%=request.getContextPath()%>/resources/js/sbadmin/css/timeline.css" rel="stylesheet">
- <!-- MetisMenu CSS -->
-  <link href="<%=request.getContextPath()%>/resources/js/sbadmin/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+	
+  <link href="${ctx}/resources/js/sbadmin/css/sb-admin-2.css" rel="stylesheet">
+  <link href="${ctx}/resources/js/sbadmin/css/timeline.css" rel="stylesheet">
+  <!-- MetisMenu CSS -->
+  <link href="${ctx}/resources/js/sbadmin/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
   <!-- Morris Charts CSS -->
-  <link href="<%=request.getContextPath()%>/resources/js/sbadmin/bower_components/morrisjs/morris.css" rel="stylesheet">
+  <link href="${ctx}/resources/js/sbadmin/bower_components/morrisjs/morris.css" rel="stylesheet">
 
   <!-- Custom Fonts -->
-  <link href="<%=request.getContextPath()%>/resources/js/sbadmin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="${ctx}/resources/js/sbadmin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<!-- Metis Menu Plugin JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/js/sbadmin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+	<!-- Metis Menu Plugin JavaScript -->
+    <script src="${ctx}/resources/js/sbadmin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/js/sbadmin/bower_components/raphael/raphael-min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/sbadmin/bower_components/morrisjs/morris.min.js"></script>
-    <%-- <script src="<%=request.getContextPath()%>/resources/js/sbadmin/js/morris-data.js"></script> --%>
+    <script src="${ctx}/resources/js/sbadmin/bower_components/raphael/raphael-min.js"></script>
+    <script src="${ctx}/resources/js/sbadmin/bower_components/morrisjs/morris.min.js"></script>
+    <%-- <script src="${ctx}/resources/js/sbadmin/js/morris-data.js"></script> --%>
 
     <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/js/sbadmin/js/sb-admin-2.js"></script>
+    <script src="${ctx}/resources/js/sbadmin/js/sb-admin-2.js"></script>
     
 </head>
 <body>
@@ -33,18 +38,19 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom:0">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
-            </div>
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+		            <img  class="navbar-brand" src="${ctx}/resources/images/icons/blackcat-large.png" style="padding:0;margin-left:20px"></img>                       
+	                <a class="navbar-brand" href="index.html">Black Cat v1.0</a>       
+        	</div>
             <!-- /.navbar-header -->
-            <div class="col-md-8 col-offset-left-2" style="height:50px;">
+            <div class="col-md-6 col-offset-left-2" style="height:50px;">
             	<ul class="nav nav-pills">
-				  <li role="presentation"><a href="#">Home</a></li>
+				  <li role="presentation"><a href="${ctx}/rrr">Home</a></li>
 				  <li role="presentation"><a href="#">Profile</a></li>
 				  <li role="presentation"><a href="#">Messages</a></li>
 				</ul>            

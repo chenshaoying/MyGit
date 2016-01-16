@@ -88,6 +88,8 @@
 	<!-- 程序上下文 --> 
 	<bean id="appContext" class="com.blackcat.frame.core.context.AppContext"/>  
 	
+	<!-- web 异常处理 -->
+    <bean id="exceptionHandler" class="com.blackcat.frame.web.interceptor.WebExceptionHandler"/> 
 	
 	<!-- Jedis 连接池配置-->  
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">  
@@ -107,4 +109,69 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="jedisConnectionFactory" />
 	</bean>
+	
+	<!-- 用户授权/认证信息Cache, 采用EhCache 缓存 -->  
+    <!-- <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>  
+    </bean>  -->
+    <!--realm配置，realm是shiro的桥梁，它主要是用来判断subject是否可以登录及权限等-->  
+    <bean id="userRealm" class="com.blackcat.frame.shiro.realm.UserRealm"></bean>
+    
+	<!--securityManager是shiro的核心，初始化时协调各个模块运行-->  
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
+       <!--单个realm使用realm,如果有多个realm，使用realms属性代替-->   
+       <property name="realm" ref="userRealm" />  
+       <!-- <property name="cacheManager" ref="shiroEhcacheManager" />   -->
+    </bean>  
+    
+        
+    <!--shiro过滤器配置，bean的id值须与web中的filter-name的值相同-->  
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+	    <property name="securityManager" ref="securityManager" />  
+	         <!-- 没有权限或者失败后跳转的页面 -->  
+	    <property name="loginUrl" value="/index" />   
+	    <property name="successUrl" value="/login" />  
+	    <property name="unauthorizedUrl" value="/unauthorized" />  
+        <property name="filterChainDefinitions">  
+            <value>  
+            	/index = anon
+            	/getKaptchaImage/** = anon
+            	/resources/** = anon
+                /logout=logout  
+                /login/**=anon  
+                /**=authc,rest  
+            </value>  
+        </property>  
+    </bean>  
+    
+    <!-- 
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    
+    Enable Shiro Annotations for Spring-configured beans.  Only run after
+	the lifecycleBeanProcessor has run:
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+	    <property name="securityManager" ref="securityManager"/>
+	</bean> -->
+
+	
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+        <property name="config">  
+            <bean class="com.google.code.kaptcha.util.Config">  
+                <constructor-arg>  
+                    <props>  
+                        <prop key="kaptcha.border">yes</prop>  
+                        <prop key="kaptcha.border.color">105,179,90</prop>  
+                        <prop key="kaptcha.textproducer.font.color">blue</prop>  
+                        <prop key="kaptcha.image.width">125</prop>  
+                        <prop key="kaptcha.image.height">40</prop>  
+                        <prop key="kaptcha.textproducer.font.size">40</prop>  
+                        <prop key="kaptcha.session.key">code</prop>  
+                        <prop key="kaptcha.textproducer.char.length">4</prop>  
+                        <prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>  
+                    </props>  
+                </constructor-arg>  
+            </bean>  
+        </property>  
+    </bean>
 </beans>

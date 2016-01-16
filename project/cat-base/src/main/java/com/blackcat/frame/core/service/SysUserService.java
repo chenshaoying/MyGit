@@ -14,4 +14,7 @@ public interface SysUserService {
 	
 	//
 	List<SysUser> getUsersSelective(SysUser condition);
+	
+	//
+	void addUser(SysUser user);
 }

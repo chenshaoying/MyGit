@@ -100,4 +100,8 @@ public class StrUtil {
 	public static boolean isEmptyCollection(Collection<?> c) {
 		return c == null || c.size()==0;
 	}
+	
+	public static boolean isEmptyTrim(String str) {
+		return str == null || str.trim().equals("");
+	}
 }

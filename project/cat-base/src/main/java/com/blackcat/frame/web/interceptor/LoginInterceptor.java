@@ -31,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor  {
 		// TODO Auto-generated method stub
 		//response.sendRedirect(request.getContextPath() + "/");
 		//response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		modelAndView.getModel().put("message", "fuck you!");
+		//modelAndView.getModel().put("message", "fuck you!");
 		
 	}
 
