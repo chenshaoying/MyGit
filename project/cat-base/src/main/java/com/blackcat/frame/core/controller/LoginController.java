@@ -14,6 +14,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,44 +24,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.blackcat.frame.core.constants.SessionEnum;
+import com.blackcat.frame.core.model.SysMenu;
 import com.blackcat.frame.core.model.SysUser;
+import com.blackcat.frame.core.service.SysMenuService;
 import com.blackcat.frame.core.service.SysUserService;
 import com.blackcat.frame.core.utils.DictUtil;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 
 @Controller
-@SessionAttributes("user")  
 public class LoginController {
 	
 	@Autowired 
 	private SysUserService sysUserService;
+	@Autowired 
+	private SysMenuService sysMenuService;
 	@Autowired  
     private Producer captchaProducer;
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
-		model.addAttribute("user", new SysUser());
-		model.addAttribute("genderList", DictUtil.getDict("common", "gender", true));
+		SysUser user = new SysUser();
+		user.setGender("U");
+		model.addAttribute("user", user);
 		return "index";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(SysUser user,Model model,HttpSession session,@ModelAttribute("captcha") String captcha) {
-     
-		if(sysUserService.validateUser(user)) {
-			user = sysUserService.queryUserDetail(user.getUserid());
-			model.addAttribute("user", user);
-			return "main";
-		} 
-		model.addAttribute("genderList", DictUtil.getDict("common", "gender", true));
-		
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(SysUser user,Model model) {
+     	
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getUserid(),user.getPasswd());  
         //记录该令牌  
-        token.setRememberMe(true);  
+        //token.setRememberMe(true);  
         //subject权限对象  
         Subject subject = SecurityUtils.getSubject();  
         try {  
@@ -75,11 +73,25 @@ public class LoginController {
           
         //验证是否成功登录的方法  
         if (subject.isAuthenticated()) {  
+        	Session session = subject.getSession();
+        	user = sysUserService.queryUserDetail(user.getUserid());
+        	session.setAttribute(SessionEnum.USER, user);
+        	
+        	//获取menu
+        	List<SysMenu> menus = sysMenuService.getMenus(user.getUserid());
+        	model.addAttribute("menus", menus);
     		return "main";
         }  
         return "index";  
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String logout() {
+        Subject subject = SecurityUtils.getSubject(); 
+        subject.logout();
+        return "index";  
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(@ModelAttribute("user") SysUser user ) {
@@ -136,5 +148,9 @@ public class LoginController {
 		return "新增成功";
 	}
 	
-	
+	@ModelAttribute
+	public void getDicts(Model model) {
+		model.addAttribute("genderList", DictUtil.getDict("common", "gender", false));
+
+	}
 }

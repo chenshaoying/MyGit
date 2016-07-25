@@ -37,6 +37,7 @@ public class NettyObjectSocketServer {
 	                 }
 	             })
 	             .option(ChannelOption.SO_BACKLOG, 128)          // (5)
+	             .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
 	             .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
 
 	            // Bind and start to accept incoming connections.

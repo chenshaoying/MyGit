@@ -21,4 +21,6 @@ public interface SysDictMapper {
     int updateByPrimaryKey(SysDict record);
     
     List<SysDict> selectByCodeAndField(@Param("dictcd") String dictcd, @Param("fildcd") String fildcd);
+    
+    List<SysDict> selectAllDistinctDicts();
 }

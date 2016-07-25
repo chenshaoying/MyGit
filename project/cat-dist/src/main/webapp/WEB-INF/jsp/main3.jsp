@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +8,11 @@
 
 </head>
 <body>
-	<div style="margin-left:20px">
-    <table id="jqGrid"></table>
-    <div id="jqGridPager"></div>
+	<div style="">
+	    <table id="jqGrid"></table>
+	    <div id="jqGridPager">
+    </div>
+    	
 </div>
 
 <script type="text/javascript">
@@ -26,7 +30,8 @@ $(document).ready(function() {
             { label:'mobile', name: 'mobile', width: 150 }
         ],
 		page: 1,
-        width: 780,
+		autowidth: true,
+        shrinkToFit: true,
         height: 250,
         rowNum: 20,
         rowList:[20,30,50],

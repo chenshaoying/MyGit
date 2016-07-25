@@ -24,6 +24,14 @@ public class AppContext implements ApplicationContextAware {
 	public static <T> T getBean(Class<T> clazz) {
 		return ctx.getBean(clazz);
 	}
+	public static Object getBeanByName(String beanName) {
+		Object bean = ctx.getBean(beanName);
+		if(bean == null) {
+			throw new NullPointerException("no such bean:" + beanName);
+		}
+		return ctx.getBean(beanName);
+	}
+	
 	private static void checkApplicationContext() {
 		if(ctx == null) {
 			throw new IllegalStateException("no applictionContext.");

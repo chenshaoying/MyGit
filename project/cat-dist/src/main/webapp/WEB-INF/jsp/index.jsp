@@ -41,33 +41,27 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<label>${message}</label>					    
-						<form id="loginForm" method="get" action="${ctx}/login" class="form-horizontal">
-							<!-- <div class="form-group">
-								<label for="email">Email address</label> <input
-									type="email" class="form-control" id="email" name="email"
-									placeholder="Email">
-							</div> -->
+						<form id="loginForm" method="post" action="${ctx}/login" class="form-horizontal">
 							<div class="form-group">
-							    <!-- <label class="col-md-3 control-label">Full name</label> -->
-						        <div class="col-md-12">
-									<input type="text" class="form-control" id="userid" name="userid" 
-										placeholder="用户名"/>
-						        </div>
-							</div>
-							
-							<div class="form-group">
-					            <!-- <label class="col-md-3 control-label">Password</label> -->
-					            <div class="col-md-12">
-									<input type="password" class="form-control" id="passwd" name="passwd"
-										placeholder="Password">					            							
+								<div class="col-md-12">
+									<div class="input-group">
+										<span class="input-group-addon "><i class="fa fa-user fa-fw "></i></span>
+										 <input type="text"
+											class="form-control" id="userid" name="userid"
+											placeholder="用户名" />
+									</div>
 								</div>
 							</div>
 							
-							<%-- <div class="form-group">
-								<label for="gender">gender</label> 
-								<form:select path="user.gender" items="${genderList}" class="form-control"/>
-								<jsp:select name="gerder" list="@com.blackcat.frame.core.utils.DictUtil@getDict('common','gender', false)"></jsp:select>
-							</div> --%>
+							<div class="form-group">
+								<div class="col-md-12">
+					            	<div class="input-group">
+						            	<span class="input-group-addon "><i class="fa fa-key fa-fw"></i></span>
+										<input type="password" class="form-control" id="passwd" name="passwd"
+											placeholder="Password">					            							
+					            	</div>
+								</div>
+							</div>						
 							
 							<div class="form-group">									
 								<div class="col-md-5">
@@ -121,87 +115,86 @@
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title" id="gridSystemModalLabel">注册窗口</h4>
 	      </div>
-	          <form id="regForm" method="get" action="${ctx}/login" class="form-horizontal">
+	          <form id="regForm"  class="form-horizontal">
 	      <div class="modal-body">
-	        <div class="container-fluid">
-							
-							<div class="form-group">
-							    <label class="col-md-3 control-label">Full name</label>
-						        <div class="col-md-8">
-									<input type="text" class="form-control"  name="userid" 
-										placeholder="用户名"/>
-						        </div>
-							</div>
-							
-							<!-- <div class="form-group">
-							    <label class="col-md-3 control-label">Full name</label>
-						        <div class="col-md-8">
-									<input type="text" class="form-control"  name="userid" 
-										placeholder="用户名"/>
-						        </div>
-							</div> -->
-												
-							<div class="form-group">
-					            <label class="col-md-3 control-label">Password</label>
-					            <div class="col-md-8">
-									<input type="password" class="form-control"  name="passwd"
-										placeholder="Password">					            							
-								</div>
-							</div>
-							
-							<div class="form-group">
-					            <label class="col-md-3 control-label">Password</label>
-					            <div class="col-md-8">
-									<input type="password" class="form-control"  name="passwd2"
-										placeholder="Comfirm your password">					            							
-								</div>
-							</div>
-							
-							<div class="form-group">
-					            <label class="col-md-3 control-label">Password</label>
-					            <div class="col-md-8">
-									<form:select path="user.gender" items="${genderList}" class="form-control"/>
-					            </div>
-					            
-							</div>
-							<div class="form-group">
-					            <label class="col-md-3 control-label">Email</label>
-					            <div class="col-md-8">
-									<input type="email" class="form-control" name="email"
-										placeholder="Email">
-					            </div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label">Mobile</label>
-					            <div class="col-md-8">
-									<input type="text" class="form-control" name="mobile"
-										placeholder="Mobile">
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<div class="col-md-8 col-md-offset-3">
-									<div class="col-md-5">
-					                    <input type="text" class="form-control" name="captcha"/>
-									</div>
-				                    	<img src="${ctx}/getKaptchaImage/REGISTER" name="kaptchaImage" class="col-md-5" style="margin-left:-15px"/>       					
-		   								<a href="#" name='refreshKaptcha' >看不清?</br>换一张</a> 
-								</div>									
-                       		</div> 
-                       		
-							<div class="form-group">
-									<div class="checkbox col-md-8 col-md-offset-3">
-										<label> <input type="checkbox" name="isAgreed[]"/> 我已阅读并同意									
-										</label>
-										<a href="#">《用户服务协议》</a>
-									</div>
-							</div>
+	        <div class="container-fluid">							
+				<div class="form-group">
+				    <label class="col-md-3 control-label">ID </label>
+			        <div class="col-md-8">
+						<input type="text" class="form-control"  name="userid" 
+							placeholder="用户ID"/>
+			        </div>
+				</div>
+				
+				<div class="form-group">
+				    <label class="col-md-3 control-label">Full name</label>
+			        <div class="col-md-8">
+						<input type="text" class="form-control"  name="userna" 
+							placeholder="用户名"/>
+			        </div>
+				</div>
+									
+				<div class="form-group">
+		            <label class="col-md-3 control-label">Password</label>
+		            <div class="col-md-8">
+						<input type="password" class="form-control"  name="passwd"
+							placeholder="Password">					            							
+					</div>
+				</div>
+				
+				<div class="form-group">
+		            <label class="col-md-3 control-label">Password</label>
+		            <div class="col-md-8">
+						<input type="password" class="form-control"  name="passwd2"
+							placeholder="Comfirm your password">					            							
+					</div>
+				</div>
+				
+				<div class="form-group">
+		            <label class="col-md-3 control-label">Gender</label>
+		            <div class="col-md-8">
+						<form:select path="user.gender" items="${genderList}"  class="form-control"/>
+		            </div>
+		            
+				</div>
+				<div class="form-group">
+		            <label class="col-md-3 control-label">Email</label>
+		            <div class="col-md-8">
+						<input type="email" class="form-control" name="email" 
+							placeholder="Email">
+		            </div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-3 control-label">Mobile</label>
+		            <div class="col-md-8">
+						<input type="text" class="form-control" name="mobile"
+							placeholder="Mobile">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-md-8 col-md-offset-3">
+						<div class="col-md-5">
+		                    <input type="text" class="form-control" name="captcha"/>
+						</div>
+	                    	<img src="${ctx}/getKaptchaImage/REGISTER" name="kaptchaImage" class="col-md-5" style="margin-left:-15px"/>       					
+  								<a href="#" name='refreshKaptcha' >看不清?</br>换一张</a> 
+					</div>									
+                    		</div> 
+                    		
+				<div class="form-group">
+						<div class="checkbox col-md-8 col-md-offset-3">
+							<label> <input type="checkbox" name="isAgreed[]"/> 我已阅读并同意									
+							</label>
+							<a href="#">《用户服务协议》</a>
+						</div>
+				</div>
 	        </div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary" id="regBtn">Save changes</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="submit" class="btn btn-primary" id="regBtn">提交</button>
 	      </div>
 						</form>
 	    </div><!-- /.modal-content -->
@@ -341,7 +334,7 @@ $(document).ready(function() {
                     stringLength: {
                         min: 1,
                         max: 80,
-                        message: 'The userid must be more than 6 and less than 30 characters long'
+                        message: 'The userna must be more than 1 and less than 80 characters long'
                     }
                 }
             },
@@ -364,10 +357,37 @@ $(document).ready(function() {
                     notEmpty: {
                         message: 'The passwd is required and cannot be empty'
                     },
+                    callback: {
+                    	message: 'Two passwds must be the same',
+                    	callback: function(value,validator) {
+                    		var passwd = $('#regForm input[name="passwd"]').val();                   		
+                    		return value == passwd;
+                    	}
+                    }
+                }
+            },
+            'email': {
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required'
+                    },
+                    emailAddress: {
+                        message: 'The input is not a valid email address'
+                    }
+                }
+            },
+            'mobile': {
+                validators: {
+                    notEmpty: {
+                        message: 'The mobile is required'
+                    },
+                 	digits: {
+                        message: 'The input is not a valid mobile phone number'
+                    },
                     stringLength: {
                         min: 6,
-                        max: 30,
-                        message: 'The passwd must be more than 6 and less than 30 characters long'
+                        max: 20,
+                        message: 'The mobile must be more than 6 and less than 20 characters long'
                     }
                 }
             },
@@ -399,39 +419,34 @@ $(document).ready(function() {
                 }
             }            
         },
-        submitHandler: function(validator, form, submitButton) {
-            $.post('${ctx}/login/addUser', form.serialize(), function(result) {
-                // The result is a JSON formatted by your back-end
-                // I assume the format is as following:
-                //  {
-                //      valid: true,          // false if the account is not found
-                //      username: 'Username', // null if the account is not found
-                //  }
-                if (result.valid == true || result.valid == 'true') {
-                    // You can reload the current location
-                    window.location.reload();
-
-                    // Or use Javascript to update your page, such as showing the account name
-                    // $('#welcome').html('Hello ' + result.username);
-                } else {
-                    // The account is not found
-                    // Show the errors
-                    //$('#errors').html('The account is not found').removeClass('hide');
-
-                    // Enable the submit buttons
+        submitHandler: function(validator, form, submitButton) {           
+        	$.ajax({
+                type:"POST",
+                url:"${ctx}/login/addUser", 
+                data:form.serialize(),
+                dataType:"json",//默认为string格式,修改为json格式
+                success: function(d){
+                	//alert(d.error);
+                    if (d.error!=undefined){
+                        alert("错误：" + d.error);
+                    } else {
+	                    //其它正常处理
+	                    alert("ajax请求成功！");                    	
+                    }
                     $('#regForm').bootstrapValidator('disableSubmitButtons', false);
+
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert('error: ' + textStatus);
                 }
-            }, 'json');
-        },
+            });
+        }
     });
-    
-    //
-    /* $("#regBtn").click(function(){
-    	if($("regForm").vald)
-    	$.post('${ctx}/login/addUser',$("regForm").serialize(),function(data){
-    		alert(data);
-    	});
-    }); */
+    $("#regForm").bootstrapValidator()    
+	    .on('success.form.bv', function(e) {
+	        // 阻止默认事件提交
+	          e.preventDefault();
+	    });
 });
     
 </script>

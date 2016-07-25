@@ -45,11 +45,15 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			</dependency>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -71,11 +75,11 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			</dependency>
+		</dependency>
 
 
 		<!-- Logging -->
@@ -275,6 +279,35 @@
 		<dependency>
 		    <groupId>com.github.axet</groupId>
 		    <artifactId>kaptcha</artifactId>
+		</dependency>
+		<!-- cxf -->
+		<dependency>  
+	        <groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>  
+        <dependency>  
+        	<groupId>org.apache.cxf</groupId>  
+        	<artifactId>cxf-rt-databinding-aegis</artifactId>  
+    	</dependency>  
+    	<dependency>  
+           	<groupId>org.apache.cxf</groupId>  
+           	<artifactId>cxf-rt-transports-http</artifactId>  
+       	</dependency>  
+       	<dependency>  
+           	<groupId>org.apache.cxf</groupId>  
+           	<artifactId>cxf-rt-transports-http-jetty</artifactId>  
+       	</dependency>
+       	
+       	<!-- google java core lib -->
+       	<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		</dependency>
+		
+		<!-- google protobuf -->
+		<dependency>
+		    <groupId>com.google.protobuf</groupId>
+		    <artifactId>protobuf-java</artifactId>
 		</dependency>
   </dependencies>
 </project>

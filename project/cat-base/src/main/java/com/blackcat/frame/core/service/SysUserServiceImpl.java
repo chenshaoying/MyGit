@@ -1,5 +1,6 @@
 package com.blackcat.frame.core.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import com.blackcat.frame.core.dao.SysUserMapper;
 import com.blackcat.frame.core.exception.ServiceException;
 import com.blackcat.frame.core.model.SysUser;
 
-@Service
+@Service("sysUserService")
 public class SysUserServiceImpl implements SysUserService {
 	
 	@Autowired
@@ -46,6 +47,8 @@ public class SysUserServiceImpl implements SysUserService {
 		if(sysUserMapper.selectByPrimaryKey(user.getUserid()) != null) {
 			throw new ServiceException(user.getUserid() + "已经存在");
 		}
+		user.setRegDate(new Date(System.currentTimeMillis()));
+		user.setStatus("N");
 		sysUserMapper.insert(user);
 	}
 }

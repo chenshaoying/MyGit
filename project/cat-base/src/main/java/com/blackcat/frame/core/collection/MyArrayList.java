@@ -8,6 +8,7 @@ public class MyArrayList<T> implements MyList<T>{
 	@SuppressWarnings("unchecked")
 	public MyArrayList() {
 		array = (T[]) new Object[default_length];
+		size = 0;
 	}
 	
 	@Override
@@ -29,18 +30,10 @@ public class MyArrayList<T> implements MyList<T>{
 
 	@Override
 	public boolean contains(T t) {
-		if(t == null) {
-			for(T c:array) {
-				if(c==null) {
-					return true;
-				}
+		for(int i=0;i<size;i++) {
+			if((t==null && array[i] == null) || (t != null && t.equals(array[i]))) {
+				return true;
 			}
-		} else {
-			for(T c:array) {
-				if(t.equals(c)) {
-					return true;
-				}
-			}			
 		}
 		return false;
 	}
@@ -53,25 +46,16 @@ public class MyArrayList<T> implements MyList<T>{
 	}
 
 	@Override
-	public boolean remove(T t) {
-		for(int i=0;i<size;) {
-			if(t==null) {
-				if(array[i]==null) {
+	public  T remove(T t) {
+		T re = null;
+		for(int i=0;i<size;i++) {
+			if((t==null && array[i] == null) || (t != null && t.equals(array[i]))) {
+				    re = array[i];
 					System.arraycopy(array, i+1, array, i, size-i-1);
 					array[--size] = null;					
-				} else {
-					i++;
-				}
-			} else {
-				if(t.equals(array[i])) {
-					System.arraycopy(array, i+1, array, i, size-i-1);
-					array[--size] = null;					
-				} else {
-					i++;
-				}
-			}
+			} 
 		}
-		return false;
+		return re;
 	}
 
 	@Override
@@ -93,19 +77,21 @@ public class MyArrayList<T> implements MyList<T>{
 	}
 
 	@Override
-	public void remove(int idx) {
+	public T remove(int idx) {
+		T re = null;
 		if(idx < size) {
+			re = array[idx];
 			System.arraycopy(array, idx+1, array, idx, size-idx-1);
 			array[--size] = null;
 		} else {
 			throw new IndexOutOfBoundsException("Index: "+idx+", Size: "+this.size);
 		}
-		
+		return re;
 	}
 
 	@SuppressWarnings("unchecked")
 	private void ensureCapacityInternal() {
-		if(size == array.length-1) {
+		if(size == array.length) {
 			T[] temp = (T[]) new Object[size*2 + 1];
 			System.arraycopy(array, 0, temp, 0, size);
 			array = temp;

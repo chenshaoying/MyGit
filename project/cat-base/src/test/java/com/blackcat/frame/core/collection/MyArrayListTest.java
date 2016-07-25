@@ -31,10 +31,10 @@ public class MyArrayListTest {
 	
 	@Test	
 	public void tetsRemove() {
-		MyList<Integer> list =  prepare(1);
+		MyList<Integer> list =  prepare(10);
 		print(list);
 		long startTime = System.currentTimeMillis();
-		list.remove(Integer.valueOf(2));
+		list.remove(9);
 		print(list);
 		System.out.println("remove "  + "items,spend time:" + (System.currentTimeMillis() - startTime) + "ms" );
 	}

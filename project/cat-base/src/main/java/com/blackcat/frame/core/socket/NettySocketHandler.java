@@ -1,24 +1,29 @@
 package com.blackcat.frame.core.socket;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 public class NettySocketHandler extends ChannelHandlerAdapter { // (1)
-	private static int count;
 	
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) { // (2)
         String bb = (String) msg;
        
-        count++;
-		System.out.println(bb + ":" +count);
-		String ret = "我也是" + count + "\n";
-		ByteBuf b = Unpooled.copiedBuffer(ret.getBytes());
-		ctx.writeAndFlush(b);
+		System.out.println(bb + ":" );
+		String ret = "我也是"  + "\n";
+		//Unpooled.copiedBuffer(ret.getBytes());
+		//ctx.write(Unpooled.copiedBuffer(ret.getBytes()));
+		ctx.write(ret);
     }
 
+	@Override
+	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+		//返回数据后，关闭channel
+		ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+	};
+    
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) { // (4)
         // Close the connection when an exception is raised.

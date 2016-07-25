@@ -22,3 +22,15 @@ create table sys_dict (
 	seq             int null,
 	primary key(dictcd,fildcd,fildvl)
 ) engine=innodb default charset=utf8;
+
+drop table if exists sys_menu;
+create table sys_menu (
+	menucd          varchar(20)          not null,
+	name            varchar(40)          not null,
+	icon            varchar(40)          not null,  
+	level           int                  not null,   -- (0 , 1 ,2 ,3) 
+	pid             varchar(20)              null,
+	action          varchar(100)         not null,   -- 默认#
+	desctx          varchar(100)             null,
+	primary key(menucd)
+) engine=innodb default charset=utf8;

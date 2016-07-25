@@ -30,10 +30,9 @@ public class SimpleSocketClient {
 		ByteArrayOutputStream bos = null;
 		try {
 			socket = new Socket(address,port);
-			
 			os = socket.getOutputStream();	
-			os.write(SocketUtil.prepareMsg(msg, HEAD_LEN, ENCODING));
-			os.flush();
+			//os.write(SocketUtil.prepareMsg(msg, HEAD_LEN, ENCODING));
+			//os.flush();
 			
 			is = socket.getInputStream();
 			byte[] head = new byte[HEAD_LEN];
@@ -93,8 +92,8 @@ public class SimpleSocketClient {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		String msg = "我日了狗了";
-		SimpleSocketClient client = new SimpleSocketClient("127.0.0.1", 5555);
+		String msg = "";
+		SimpleSocketClient client = new SimpleSocketClient("127.0.0.1", 9999);
 		client.send(msg);		
 	}
 	

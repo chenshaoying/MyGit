@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,8 +18,10 @@ class SimpleSocketHandler implements Runnable {
 
 	private Socket socket;
 	
-	public SimpleSocketHandler(Socket socket) {
+	public SimpleSocketHandler(Socket socket) throws SocketException {
 		this.socket = socket;
+		socket.setSoTimeout(10000);
+
 	}
 
 	@Override
@@ -30,10 +34,11 @@ class SimpleSocketHandler implements Runnable {
 			os = socket.getOutputStream();
 			
 			//
-			byte[] head = new byte[HEAD_LEN];
+			/*byte[] head = new byte[HEAD_LEN];
 			is.read(head);
-			int body_len = Integer.valueOf(new String(head,ENCODING));
-			
+			int body_len = Integer.valueOf(new String(head,ENCODING));*/
+			int body_len = readPkgLen(is);
+			System.out.println("----" + body_len);
 			bos = new ByteArrayOutputStream();
 			int count = 0;
 			int i = 0;
@@ -49,7 +54,7 @@ class SimpleSocketHandler implements Runnable {
 			bos.flush();
 			String inputs = new String(bos.toByteArray(),ENCODING);
 			log.info("Received from client:" + inputs);			
-			String outputs = "接收完毕";
+			String outputs = "XXXX";
 			os.write(SocketUtil.prepareMsg(outputs, HEAD_LEN, ENCODING));
 			os.flush();
 		} catch (Throwable t) {
@@ -90,4 +95,41 @@ class SimpleSocketHandler implements Runnable {
 			socket = null;
 		}
 	}
+	
+	/**
+     * 读取6字节的包长度.
+     * 包长度为整数的字符串，右对齐前补0
+     * 
+     * @param in
+     * @return
+     */
+    public static int readPkgLen(InputStream in) {
+        int len2read = 0;
+        int flag = -1; 	//计算器用来标识是否为空
+        byte[] buf = new byte[6];
+        try {
+            //read len
+            len2read = buf.length;
+            while (len2read > 0) {
+                int rc = in.read(buf, buf.length - len2read, len2read);
+                if (rc != -1 && rc < len2read){
+                	return -1; //报文长度少于报文制定长度
+                }
+                flag ++;
+                if(flag ==0 &&rc == -1)
+                	 return 0; //接收到空报文
+                else {	
+                	len2read -= rc;
+                }
+            }
+            String slen = new String(buf, "UTF-8");
+            return Integer.parseInt(slen.trim());
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("读取LTTS包长度失败,非法数字字符,buf=" + new String(buf) + ",len2read=" + len2read, e);
+        } catch (SocketTimeoutException e) {
+            throw new RuntimeException("读取LTTS包长度超时,len2read=" + len2read, e);
+        } catch (Throwable e) {
+            throw new RuntimeException("读取LTTS包长度失败,buf=" + new String(buf) + ",len2read=" + len2read, e);
+        }
+    }
 }

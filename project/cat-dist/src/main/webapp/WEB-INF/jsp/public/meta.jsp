@@ -1,3 +1,4 @@
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="/images/icons/blackcat-small.ico" type="image/x-icon" />
@@ -15,6 +16,9 @@
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/ui.jqgrid.css"> --%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/ui.jqgrid-bootstrap-ui.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/ui.jqgrid-bootstrap.css"> 
+
+<!-- font-awesome -->
+<link href="<%=request.getContextPath()%>/resources/js/sbadmin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->

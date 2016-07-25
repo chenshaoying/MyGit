@@ -14,14 +14,14 @@ import io.netty.handler.codec.string.StringDecoder;
 public class NettySocketClient {
     public static void main(String[] args) throws Exception {
         String host = "127.0.0.1";
-        int port = 9998;
+        int port = 9999;
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try {
             Bootstrap b = new Bootstrap(); // (1)
             b.group(workerGroup); // (2)
             b.channel(NioSocketChannel.class); // (3)
-            b.option(ChannelOption.SO_KEEPALIVE, true); // (4)
+            b.option(ChannelOption.SO_KEEPALIVE, false); // (4)
             b.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {

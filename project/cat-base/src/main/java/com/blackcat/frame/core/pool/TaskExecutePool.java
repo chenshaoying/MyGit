@@ -62,6 +62,8 @@ public class TaskExecutePool {
 		this.isOn = false;
 		for(Worker worker:workers) {
 			if(worker.isAlive()) {
+				//interrupt 不会中断线程，而是给线程打上一个标志
+				//实际线程如果是while(!isInterrupted) 来进行中断
 				worker.interrupt();
 			}
 		}

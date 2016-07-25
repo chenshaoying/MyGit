@@ -33,8 +33,9 @@ public class NettySocketClientHandler extends ChannelHandlerAdapter {
     	for(int i=0; i<10; i++) {
     		msg = Unpooled.buffer(req.length);
     		msg.writeBytes(req);
-    		ctx.writeAndFlush(msg);
+    		ctx.write(msg);
     	}
+    	ctx.flush();
     	
     }
 }

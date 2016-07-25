@@ -66,58 +66,22 @@ public class MyLinkedList<T> implements MyList<T> {
 	}
 
 	@Override
-	public boolean remove(T t) {
-		if(head != null) {
-			MySingleListNode<T> curr_prev = head;
-			MySingleListNode<T> curr = head.next;
-			
-			if(t == null) {
-				if(head.val == null) {
-					head = head.next;
-					size--;
-					if(size == 0) {
-						tail = null;
-					}
-					return true;
-				}
-				while(curr != null) {
-					if(curr.val == null) {
-						if(tail == curr) {
-							tail = curr_prev;
-						} 
-						curr_prev.next = curr.next;
-						size--;
-						return true;
-					} else {
-						curr_prev = curr;
-						curr = curr.next;
-					}
-				}
+	public T remove(T t) {
+		T re = null;
+		MySingleListNode<T> pre = null;
+		MySingleListNode<T> cur = head;
+		while(cur != null) {
+			if((t == null && cur.val == null) || (t != null && t.equals(cur.val))) {
+				re = cur.val;
+				pre.next = cur.next;
+				size--;
+				break;
 			} else {
-				if(t.equals(head.val)) {
-					head = head.next;
-					size--;
-					if(size == 0) {
-						tail = null;
-					}
-					return true;
-				}
-				while(curr != null) {
-					if(t.equals(curr.val)) {
-						if(tail == curr) {
-							tail = curr_prev;
-						}
-						curr_prev.next = curr.next;
-						size--;
-						return true;
-					} else {
-						curr_prev = curr;
-						curr = curr.next;
-					}
-				}
+				pre = cur;
+				cur = cur.next;
 			}
-		} 
-		return false;
+		}
+		return re;
 	}
 
 	@Override
@@ -150,29 +114,28 @@ public class MyLinkedList<T> implements MyList<T> {
 	}
 
 	@Override
-	public void remove(int idx) {
+	public T remove(int idx) {
+		T re = null;
 		if(idx < size && idx > -1) {
 			int count = 0;
-			MySingleListNode<T> curr = head;
-			MySingleListNode<T> curr_prev = null;
+			MySingleListNode<T> pre = null;
+			MySingleListNode<T> cur = head;
 			while(count != idx) {
-				curr_prev = curr;
-				curr = curr.next;
+				pre = cur;
+				cur = cur.next;
 				count++;
 			}
-			if(curr_prev != null) {
-				curr_prev.next = curr.next;				
+			re = cur.val;
+			if(pre != null) {
+				pre.next = cur.next;				
 			} else {
 				head = head.next;
-			}
-			if(count == size-1) {
-				tail = curr_prev;
 			}
 			size--;
 		} else {
 			throw new IndexOutOfBoundsException("index :" + idx + ",size:" + size);
 		}
-		
+		return re;
 	}
 	
 }

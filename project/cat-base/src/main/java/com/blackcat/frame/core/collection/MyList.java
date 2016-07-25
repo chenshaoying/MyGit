@@ -6,6 +6,6 @@ public interface MyList<T> extends MyCollection<T> {
 	
 	void set(int idx, T t);
 	
-	void remove(int idx);
+	T remove(int idx);
 		
 }

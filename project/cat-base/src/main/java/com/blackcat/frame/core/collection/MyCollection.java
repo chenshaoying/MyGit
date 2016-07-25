@@ -11,5 +11,5 @@ public interface MyCollection<T> {
 
 	boolean add(T t);
 
-	boolean remove(T t);
+	T remove(T t);
 }

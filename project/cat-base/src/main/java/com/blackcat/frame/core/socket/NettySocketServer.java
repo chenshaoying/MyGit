@@ -20,8 +20,8 @@ public class NettySocketServer {
 	    }
 
 	    public void run() throws Exception {
-	        EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1)
-	        EventLoopGroup workerGroup = new NioEventLoopGroup();
+	        EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1) 服务端接受客户端请求
+	        EventLoopGroup workerGroup = new NioEventLoopGroup();   //进行SockeChannel的网络读写
 	        try {
 	            ServerBootstrap b = new ServerBootstrap(); // (2)
 	            b.group(bossGroup, workerGroup)
@@ -34,7 +34,7 @@ public class NettySocketServer {
 	                     ch.pipeline().addLast(new NettySocketHandler());
 	                 }
 	             })
-	             .option(ChannelOption.SO_BACKLOG, 128)          // (5)
+	             .option(ChannelOption.SO_BACKLOG, 128)          // 包含已通过的最大连接数，当超过128时，再次发起连接将被拒绝
 	             .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
 
 	            // Bind and start to accept incoming connections.
@@ -45,8 +45,9 @@ public class NettySocketServer {
 	            // shut down your server.
 	            f.channel().closeFuture().sync();
 	        } finally {
+	        	//优雅退出，释放线程池资源
+	        	bossGroup.shutdownGracefully();
 	            workerGroup.shutdownGracefully();
-	            bossGroup.shutdownGracefully();
 	        }
 	    }
 
@@ -55,7 +56,7 @@ public class NettySocketServer {
 	        if (args.length > 0) {
 	            port = Integer.parseInt(args[0]);
 	        } else {
-	            port = 9998;
+	            port = 9999;
 	        }
 	        new NettySocketServer(port).run();
 	    }

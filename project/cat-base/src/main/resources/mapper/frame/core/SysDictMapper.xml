@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blackcat.frame.core.dao.SysDictMapper" >
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" readOnly="true"/>
+ <!--  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" readOnly="true"/> -->
   <resultMap id="BaseResultMap" type="com.blackcat.frame.core.model.SysDict" >
     <id column="dictcd" property="dictcd" jdbcType="VARCHAR" />
     <id column="fildcd" property="fildcd" jdbcType="VARCHAR" />
@@ -99,5 +99,10 @@
     where dictcd = #{dictcd,jdbcType=VARCHAR}
       and fildcd = #{fildcd,jdbcType=VARCHAR}
       order by seq asc
+  </select>
+  
+  <select id="selectAllDistinctDicts" resultMap="BaseResultMap" >
+    select distinct dictcd,fildcd
+    from sys_dict
   </select>
 </mapper>
