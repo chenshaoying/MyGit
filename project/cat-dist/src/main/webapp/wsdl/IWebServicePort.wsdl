@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.web.frame.blackcat.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IWebServiceService" targetNamespace="http://service.web.frame.blackcat.com/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://service.web.frame.blackcat.com/" version="1.0">
+<xs:element name="sayHi" type="tns:sayHi"/>
+<xs:element name="sayHiResponse" type="tns:sayHiResponse"/>
+<xs:complexType name="sayHi">
+<xs:sequence>
+<xs:element minOccurs="0" name="text" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sayHiResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="sayHiResponse">
+<wsdl:part element="tns:sayHiResponse" name="parameters"/>
+</wsdl:message>
+<wsdl:message name="sayHi">
+<wsdl:part element="tns:sayHi" name="parameters"/>
+</wsdl:message>
+<wsdl:portType name="IWebService">
+<wsdl:operation name="sayHi">
+<wsdl:input message="tns:sayHi" name="sayHi"/>
+<wsdl:output message="tns:sayHiResponse" name="sayHiResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="IWebServiceServiceSoapBinding" type="tns:IWebService">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="sayHi">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="sayHi">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="sayHiResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="IWebServiceService">
+<wsdl:port binding="tns:IWebServiceServiceSoapBinding" name="IWebServicePort">
+<soap:address location="http://tempuri.org/cat-dist/services/IWebServicePort"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

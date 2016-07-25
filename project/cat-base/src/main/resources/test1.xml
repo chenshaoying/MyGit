@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<employee xmlns="fuck"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="fuck schema1.xsd" > <!--fuck 为schema1的targetNamespace schema1.xsd 为schema1的路径--> 
+       <firstname> dddd</firstname >
+       <lastname> dddd</lastname >     
+</employee>
+
+		

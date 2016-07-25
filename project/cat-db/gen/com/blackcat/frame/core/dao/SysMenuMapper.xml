@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blackcat.frame.core.dao.SysMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.blackcat.frame.core.model.SysMenu" >
+    <id column="menucd" property="menucd" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+    <result column="desctx" property="desctx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    menucd, name, icon, level, pid, action, desctx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where menucd = #{menucd,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_menu
+    where menucd = #{menucd,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.blackcat.frame.core.model.SysMenu" >
+    insert into sys_menu (menucd, name, icon, 
+      level, pid, action, 
+      desctx)
+    values (#{menucd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
+      #{desctx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blackcat.frame.core.model.SysMenu" >
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menucd != null" >
+        menucd,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="desctx != null" >
+        desctx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menucd != null" >
+        #{menucd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="desctx != null" >
+        #{desctx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blackcat.frame.core.model.SysMenu" >
+    update sys_menu
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="desctx != null" >
+        desctx = #{desctx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menucd = #{menucd,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blackcat.frame.core.model.SysMenu" >
+    update sys_menu
+    set name = #{name,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=VARCHAR},
+      action = #{action,jdbcType=VARCHAR},
+      desctx = #{desctx,jdbcType=VARCHAR}
+    where menucd = #{menucd,jdbcType=VARCHAR}
+  </update>
+</mapper>

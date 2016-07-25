@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/data/jpa 
+		http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	
+
+	<!-- Activates annotation-based bean configuration -->
+	<context:annotation-config />
+
+	<!-- Scans for application @Components to deploy -->
+	<context:component-scan base-package="com.blackcat.mq" />
+
+	<!-- 数据库配置文件位置 -->
+	<context:property-placeholder location="classpath:/jdbc.properties" />
+	
+	<bean id="jmsFactory" destroy-method="stop" class="org.apache.activemq.pool.PooledConnectionFactory">  
+        <property name="connectionFactory">  
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">  
+                <property name="brokerURL" value="tcp://192.168.147.130:61616" />  
+                 <property name="userName" value="admin" />  
+                <property name="password" value="admin" />  
+            </bean>  
+        </property>  
+	</bean>
+	
+	<!-- Spring JMS Template
+		JmsTemplate 类的实例 一经配置便是线程安全 的。 要清楚一点，JmsTemplate 
+		是有状态的，因为它维护了 ConnectionFactory 的引用，但这个状态时不是会话状态。
+	-->
+	<bean id="jmsTemplate"
+		class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsFactory" />
+		<property name="defaultDestinationName" value="MySubject" />
+		<!--JMS API有两种发送方法，一种采用发送模式、
+优先级和存活时间作为服务质量（QOS）参数，
+			默认{deliveryMode:2(1),priority:4,timeToLive:0}
+			另一种使用无需QOS参数的缺省值方法。
+			<property name="explicitQosEnabled" value="true"/>
+			<property name="deliveryMode" value="2"/>
+			<property name="priority" value="4"/>
+                        <property name="timeToLive" value="1000"/>
+		 -->
+		<!--
+		 	<property name="receiveTimeout" value="1000" />
+		 -->
+	</bean>
+	
+</beans>
