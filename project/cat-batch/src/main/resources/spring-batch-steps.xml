@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+  xmlns:beans="http://www.springframework.org/schema/beans" xmlns:bean="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/batch
+  http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+  http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+  
+  <!-- 步骤一 -->
+  <step id="mysteps_first">
+    <tasklet ref="first">
+    </tasklet>
+  </step>
+  
+  <!--使用流组装step -->
+  <flow id="mysteps_flow">
+    <!-- <step id="mysteps_flow_first" parent="mysteps_first" next="mysteps_flow_second"></step>
+    <step id="mysteps_flow_second" parent="mysteps_second" next="mysteps_flow_third"></step>
+    <step id="mysteps_flow_third" parent="mysteps_third"></step> -->
+    <step id="mysteps_flow_second" parent="mysteps_second"></step>
+  </flow>
+  
+  
+  
+  <step id="mysteps_second">
+    <tasklet>
+    	<chunk reader="myReader" processor="myProcessor" 
+	       writer="myWriter" commit-interval="100">
+		</chunk>
+    </tasklet>
+  </step>
+  
+  <!-- <step id="mysteps_third">
+    <tasklet ref="third"></tasklet>
+  </step> -->
+  
+  <beans:bean id="first" class="com.blackcat.batch.tasklet.MyFirtstStepTasklet" scope="step"></beans:bean>
+  
+  <!-- <beans:bean id="myReader" class="com.blackcat.batch.reader.MyReader" scope="step"></beans:bean> -->
+  <beans:bean id="myReader" class="com.blackcat.batch.reader.MyFileReader" scope="step">
+  	<beans:property name="filePath" value="C:\Users\darren\Desktop\xib\cardno.txt" />
+  	<beans:property name="encoding" value="UTF-8" />
+  </beans:bean>
+  <beans:bean id="myProcessor" class="com.blackcat.batch.processor.MyProcessor" scope="step"></beans:bean>
+  <beans:bean id="myWriter" class="com.blackcat.batch.writer.MyWriter" scope="step"></beans:bean>
+  
+<!--   <bean id="second" class="com.test.tasklet.MySecondTasklet" scope="step">
+  </bean>
+  <bean id="third" class="com.test.tasklet.MyThirdTasklet" scope="step">
+  </bean> -->
+</beans:beans>

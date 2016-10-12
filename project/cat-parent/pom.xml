@@ -8,7 +8,8 @@
   <description>just for fun</description>
   
   <modules>
-  	<module>../cat-base</module>
+  	<module>../cat-frame</module>
+  	<module>../cat-dubbo</module>
   	<module>../cat-mq</module>
   	
   	<!-- <module>../cat-design</module>  --> 	
@@ -51,7 +52,7 @@
   		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-         	<version>4.11</version>
+         	<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -311,7 +312,7 @@
 	    <dependency>  
 	        <groupId>redis.clients</groupId>  
 	        <artifactId>jedis</artifactId>  
-	        <version>2.4.2</version>  
+	        <version>2.9.0</version>  
 	    </dependency> 
 	    
 	    <dependency>
@@ -425,6 +426,13 @@
 		    <groupId>com.google.protobuf</groupId>
 		    <artifactId>protobuf-java</artifactId>
 		    <version>2.6.1</version>
+		</dependency>
+		
+		<!-- json -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.17</version>
 		</dependency>
   	</dependencies>
   </dependencyManagement>
