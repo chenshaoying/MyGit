@@ -10,11 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.blackcat.frame.core.constants.SessionEnum;
+import com.blackcat.frame.core.enums.SessionEnum;
 import com.blackcat.frame.core.model.SysMenu;
 import com.blackcat.frame.core.model.SysUser;
 import com.blackcat.frame.core.service.SysMenuService;
@@ -54,39 +49,23 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(SysUser user,Model model) {
+	public String login(SysUser user,Model model,HttpSession httpSession) {
      	
-		UsernamePasswordToken token = new UsernamePasswordToken(user.getUserid(),user.getPasswd());  
-        //记录该令牌  
-        //token.setRememberMe(true);  
-        //subject权限对象  
-        Subject subject = SecurityUtils.getSubject();  
-        try {  
-            subject.login(token);  
-        } catch (UnknownAccountException ex) {//用户名没有找到  
-    		model.addAttribute("message", "用户名没有找到  !");
-        } catch (IncorrectCredentialsException ex) {//用户名密码不匹配  
-    		model.addAttribute("message", "用户名密码不匹配  !");
-        }catch (AuthenticationException e) {//其他的登录错误  
-    		model.addAttribute("message", "其他的登录错误  !");
-        }  
-          
-        //验证是否成功登录的方法  
-        if (subject.isAuthenticated()) {  
-        	Session session = subject.getSession();
-        	user = sysUserService.queryUserDetail(user.getUserid());
-        	session.setAttribute(SessionEnum.USER, user);
-        	
+		if(sysUserService.validateUser(user)) {
+			httpSession.setAttribute(SessionEnum.IS_LOGIN.name(), true);
+			httpSession.setAttribute(SessionEnum.USER.name(), user);
+			httpSession.setAttribute(SessionEnum.LAST_LOGIN_TIME.name(), System.currentTimeMillis());
         	//获取menu
         	List<SysMenu> menus = sysMenuService.getMenus(user.getUserid());
         	model.addAttribute("menus", menus);
     		return "main";
-        }  
+		}
         return "index";  
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public String logout() {
+	public String logout(HttpSession httpSession) {
+		//httpSession.
         Subject subject = SecurityUtils.getSubject(); 
         subject.logout();
         return "index";  

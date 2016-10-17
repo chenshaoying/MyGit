@@ -9,7 +9,8 @@
 	http://www.springframework.org/schema/mvc  
     http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-
+	<!-- 默认首页 --> 
+	<mvc:view-controller path="/" view-name="redirect:/login" /> 
 	<!-- XML转码器 -->
 <!-- 	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
  -->
@@ -76,6 +77,11 @@
 	<!-- 自定义拦截器 -->
 	<mvc:interceptors>
 		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		<mvc:interceptor>
+			<mvc:exclude-mapping path="/login"/>
+			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+			<bean class="com.blackcat.frame.web.interceptor.SessionInterceptor"/>
+		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/*"/>
 			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
